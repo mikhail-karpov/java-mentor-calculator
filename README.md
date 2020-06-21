@@ -2,7 +2,7 @@
 
 Test task for java-mentor.com.
 
-##Limitations
+## Limitations
 
 * The calculator can perform addition, subtraction, multiplication, and division operations with two numbers: 
 a + b, a - b, a * b, and a / b. 
@@ -17,7 +17,7 @@ a + b, a - b, a * b, and a / b.
 * If the user enters a string that does not match one of the arithmetic operations described above, 
 the application throws an exception and exits.
 
-##Examples
+## Examples
 
 ```
 Input: 3 + 2
