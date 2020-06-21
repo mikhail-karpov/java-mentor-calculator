@@ -28,3 +28,14 @@ Output: 5.0
 Input: VI / III
 Output: 2.0
 ```
+
+## Usage
+
+Clone repository to your local machine and run with Maven:
+
+```
+git clone https://github.com/mikhail-karpov/java-mentor-calculator.git
+cd java-mentor-calculator
+mvn compile
+mvn exec:java -Dexec.mainClass=com.mikhailkarpov.calculator.Calculator -Dexec.args="3 + 2"
+```
