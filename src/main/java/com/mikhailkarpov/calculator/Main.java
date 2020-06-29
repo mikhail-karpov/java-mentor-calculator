@@ -1,30 +1,48 @@
 package com.mikhailkarpov.calculator;
 
-public class Calculator {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
 
     private static String ROMAN_NUMERAL_PATTERN = "^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$";
     private static String ARABIC_NUMERAL_PATTERN = "^[0-9]*$";
 
     public static void main(String[] args) {
-        if (args.length != 3)
+        String[] userInput = getUserInput();
+
+        if (userInput.length != 3)
             throw new IllegalArgumentException("Illegal input. Examples: '3 + 2', 'VI / III', etc.");
 
-        Calculator calculator = new Calculator(args[0], args[2], args[1]);
-        double result = calculator.calculate();
-        System.out.println(result);
+        ArithmeticOperation operation = getOperation(userInput[0], userInput[2], userInput[1]);
+        double result = operation.execute();
+
+        if (userInput[0].matches(ROMAN_NUMERAL_PATTERN)) {
+            int roundedResult = (int) Math.round(result);
+            String resultStr = RomanNumConverter.intToRoman(roundedResult);
+            System.out.println(resultStr);
+        } else {
+            System.out.println(result);
+        }
     }
 
-    private ArithmeticOperation operation;
+    private static String[] getUserInput() {
+        String[] splittedInput = null;
 
-    public Calculator(String a, String b, String operation) {
-        this.operation = getOperation(a, b, operation);
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            String input = reader.readLine();
+            splittedInput = input.split(" ");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } finally {
+            return splittedInput;
+        }
     }
 
-    public double calculate() {
-        return operation.execute();
-    }
-
-    private ArithmeticOperation getOperation(String a, String b, String operation) {
+    private static ArithmeticOperation getOperation(String a, String b, String operation) {
         int x;
         int y;
 
