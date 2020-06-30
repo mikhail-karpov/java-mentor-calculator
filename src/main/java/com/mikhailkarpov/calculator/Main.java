@@ -19,8 +19,7 @@ public class Main {
         double result = operation.execute();
 
         if (userInput[0].matches(ROMAN_NUMERAL_PATTERN)) {
-            int roundedResult = (int) Math.round(result);
-            String resultStr = RomanNumConverter.intToRoman(roundedResult);
+            String resultStr = RomanNumConverter.intToRoman((int) result);
             System.out.println(resultStr);
         } else {
             System.out.println(result);
